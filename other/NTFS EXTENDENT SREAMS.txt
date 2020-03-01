@@ -1,0 +1,8 @@
+//making advanced file stream
+echo huys0s8 > InstagramVPN.exe:jew
+
+//read AFS
+Get-content -path C:\Users\Nowruz\InstagramVPN.exe -stream jew
+
+//set from PS 
+set-content -path C:\Users\Nowruz\InstagramVPN.exe -stream jew
