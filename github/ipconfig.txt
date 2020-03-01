@@ -1,0 +1,200 @@
+В случае сбоя работы Github.com 
+
+3. https://developer.github.com/v3/meta/ <= tuta est es 4e
+
+
+1. Находим IP адреса Github.com 
+	в google.com ищем "githubs ip addresses"
+	будет найдено что-то вроде этого - https://help.github.com/en/github/authenticating-to-github/about-githubs-ip-addresses
+	открываем если не открылось переводим гугл транслейтом
+	там будет ссылка на Meta 
+	переходим по ней или также "переводим" и смотрим оригинал
+	список адресов есть!
+2. Прописываем IP адреса в hosts
+	на 10-ке C:\windows\system32\drivers\etc\hosts
+	прописываем рабочие адреса в таком формате
+	
+	ip 		domain
+	151.101.12.133 assets-cdn.github.com
+	151.101.12.133 avatars0.githubusercontent.com
+	151.101.12.133 avatars1.githubusercontent.com
+	151.101.12.133 avatars2.githubusercontent.com
+	151.101.12.133 avatars3.githubusercontent.com
+	151.101.12.133 avatars4.githubusercontent.com
+	151.101.12.133 avatars5.githubusercontent.com
+	151.101.12.133 avatars6.githubusercontent.com
+	151.101.12.133 avatars7.githubusercontent.com
+	151.101.12.133 avatars8.githubusercontent.com
+	151.101.12.133 avatars9.githubusercontent.com
+	151.101.12.133 help.github.com
+	151.101.12.133 pages.github.com
+	151.101.12.133 raw.githubusercontent.com
+
+
+
+14.11.2019:
+
+https://api.github.com/meta
+
+{
+  "verifiable_password_authentication": true,
+  "hooks": [
+    "192.30.252.0/22",
+    "185.199.108.0/22",
+    "140.82.112.0/20"
+  ],
+  "web": [
+    "192.30.252.0/22",
+    "185.199.108.0/22",
+    "140.82.112.0/20",
+    "13.114.40.48/32",
+    "13.229.188.59/32",
+    "13.234.176.102/32",
+    "13.234.210.38/32",
+    "13.236.229.21/32",
+    "13.237.44.5/32",
+    "13.250.177.223/32",
+    "15.164.81.167/32",
+    "18.194.104.89/32",
+    "18.195.85.27/32",
+    "35.159.8.160/32",
+    "52.192.72.89/32",
+    "52.64.108.95/32",
+    "52.69.186.44/32",
+    "52.74.223.119/32",
+    "52.78.231.108/32"
+  ],
+  "api": [
+    "192.30.252.0/22",
+    "185.199.108.0/22",
+    "140.82.112.0/20",
+    "13.209.163.61/32",
+    "13.230.158.120/32",
+    "13.233.76.15/32",
+    "13.234.168.60/32",
+    "13.236.14.80/32",
+    "13.238.54.232/32",
+    "13.250.168.23/32",
+    "13.250.94.254/32",
+    "18.179.245.253/32",
+    "18.194.201.191/32",
+    "18.195.135.122/32",
+    "52.58.203.252/32",
+    "52.63.231.178/32",
+    "52.69.239.207/32",
+    "54.169.195.247/32",
+    "54.180.75.25/32"
+  ],
+  "git": [
+    "192.30.252.0/22",
+    "185.199.108.0/22",
+    "140.82.112.0/20",
+    "13.114.40.48/32",
+    "13.229.188.59/32",
+    "13.234.176.102/32",
+    "13.234.210.38/32",
+    "13.236.229.21/32",
+    "13.237.44.5/32",
+    "13.250.177.223/32",
+    "15.164.81.167/32",
+    "18.194.104.89/32",
+    "18.195.85.27/32",
+    "35.159.8.160/32",
+    "52.192.72.89/32",
+    "52.64.108.95/32",
+    "52.69.186.44/32",
+    "52.74.223.119/32",
+    "52.78.231.108/32"
+  ],
+  "pages": [
+    "192.30.252.153/32",
+    "192.30.252.154/32",
+    "185.199.108.153/32",
+    "185.199.109.153/32",
+    "185.199.110.153/32",
+    "185.199.111.153/32"
+  ],
+  "importer": [
+    "54.87.5.173",
+    "54.166.52.62",
+    "23.20.92.3",
+    "192.30.252.0/22",
+    "185.199.108.0/22",
+    "140.82.112.0/20"
+  ]
+}
+
+
+
+3. SSH
+
+[git] Доступ по ssh
+Андрей edited this page on 17 Jan 2018 · 10 revisions
+Для того чтобы git работал по ssh с удалённым репозиторием нужно сгенерировать ключи и добавить публичный ключ на сервер где хранится удалённый репозиторий.
+
+Для github.com необходимо добавить публичный кюч в свой аккаунт.
+
+По умолчанию папка .ssh находится в домашнем каталоге. Для Windows 7
+
+Kаталог пользователя:
+
+C:/Users/<username>/
+Чтобы ssh в Windows нашёл эту папку, должна быть выставлена переменная окружения
+
+HOME=C:/Users/<username>/
+Сам ssh устанавливается вместе с git, но к нему нужно добавить путь в переменной окружений PATH
+
+Генерация ключа:
+ssh-keygen -C "My key alias"
+"My key alias" - тут обычно user@host или email
+По умолчанию пара ключей кладутся в
+
+~/.ssh/id_rsa
+~/.ssh/id_rsa.pub (*это публичный ключ который надо скопировать в акаунт github.com)
+Несколько ssh ключей при работе с git.
+Например это необходимо если работать с несколькими акаунтами на github.com
+
+Суть в кратце: для ssh можно задать конфиг (файл ~/.ssh/config), в котором можно переопределять хосты и назначать для каждого свой ключ. При этом при подключении удалённого репозитория необходимо вместо gthub.com указать свой переопределённый хост - ssh его схватит, подставит нужный ключ и нужный хост. Пример:
+
+Генерим ключи:
+ssh-keygen -C "myname@gmail.com" -f ~/.ssh/id_rsa.myname
+В файле ~/.ssh/config пишем:
+
+Host myname.github.com
+	HostName github.com
+	User git
+    IdentityFile ~/.ssh/id_rsa.myname
+Надо выставить права:
+
+chmod 600 ~/.ssh/config
+Привязываем удалённый репозиторий:
+
+git remote add origin ssh://git@myname.github.com:myname/repo.git
+Или меняем URL существующего:
+
+git remote set-url origin git@myname.github.com:myname/repo.git
+Мега статья на Хабре про ssh Также об этом можно почитать тут и особенно вот тут
+
+Ещё полезно знать
+
+Подсказка всем, кто будет редактировать ssh_config и использовать IdentityFile: ssh-agent может (и часто так и поступает) перегружать тот ключ, что указан в ssh_config. Чтобы этого не случилось, используйте IdentitiesOnly. Пару часов однажды убил пытаясь настроить подключение к двум хостам с разными ключами.
+
+#Подключение по ssh к github.com
+
+Уже не раз сталкивался с проблемой: Невозможно клонировать по ssh c github git проект проверяем порт по default обычно 22
+
+запрос: $ ssh -T git@github.com
+
+ssh: connect to host github.com port 22: Connection timed out
+
+проверяем по 443 порту
+
+$ ssh -T -p 443 git@ssh.github.com
+
+The authenticity of host '[ssh.github.com]:443 ([192.30.253.123]:443)' can't be establishe d. RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8. Are you sure you want to continue connecting (yes/no)? yes Warning: Permanently added '[ssh.github.com]:443,[192.30.253.123]:443' (RSA) to the list of known hosts. Hi splaa! You've successfully authenticated, but GitHub does not provide shell access.
+
+если по 443 всё Ок то сылка должна иметь вид
+
+ssh://git@ssh.github.com:443/yourname/reponame.git
+
+пример: git clone ssh://git@ssh.github.com:443/SevenPowerX-PHP/StartPHP.git
