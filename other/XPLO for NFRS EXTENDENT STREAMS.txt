@@ -1,0 +1,18 @@
+#SETTING EXTENDENT DATA INTO NTFS FILE
+set-content -path PATH_TO_FILE -stream STREAM_NAME
+example -
+    set-content -path .\hellow.ps1 -stream splo5
+#READING EXTENDENT DATA FROM NTFS FILE
+
+Get-Content -path PATH_TO_FILE -Stream STREAM_NAME | out-file -filepath PATH_TO_NEW_FILE -Encoding UTF8; PATH_TO_RUNNING_FILE; del PATH_TO_RUNNING_FILE
+example -
+    Get-Content -path .\Hellow.ps1 -Stream splo5 | out-file -filepath SP.cmd -Encoding UTF8; .\SP.cmd; del .\SP.cmd
+
+
+
+$bytes = [System.IO.File]::ReadAllBytes(".\targetfile.ext")
+$bytes | Set-Content -path .\container.file -Stream bitmap
+
+
+$outbytes = Get-Content -path .\container.file -Stream bitmap
+[io.file]::WriteAllBytes(".\newfile.ext", $outbytes)
