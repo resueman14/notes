@@ -1,0 +1,7 @@
+start gunicorn and nginx(they are writed in init.sh on desktop):
+
+service gunicorn start
+service nginx start
+
+get ip of vm and write it in HOSTS 1.2.3.4  salam.com
+alter if u want Domain name (~ etc/nginx/available-site) and allowed hosts (~ var/www/web_app/website/settings.py) by now it's - salam.com
